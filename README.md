@@ -14,10 +14,7 @@ app react-native/php/mysql
 
 
    &nbsp;
-   
- # Backend api-php
- &nbsp;
-   
+ 
   ## Tecnologias :
   &nbsp;
   # Frontend 
