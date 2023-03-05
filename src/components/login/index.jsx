@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect}  from 'react';
 
+
+
 import {
      Alert, 
      View, 
@@ -37,6 +39,9 @@ export default function Login({ navigation }){
     password:'',    
   });
     
+
+
+  
 
         /*
            ronaldofagundes@gmail.com
@@ -77,6 +82,12 @@ export default function Login({ navigation }){
 
                  setUser(result)
                  setErrorLogin(false);
+
+                 setLogin({
+                  ...login, ["email"]: "" ,
+                     login , ["password"]: ""
+                }); 
+                
                  navigation.navigate("Home");
 
                   console.log(" email "+login.email+" senha "+login.password+" conectado com sucesso com ususario  "+result);
@@ -86,7 +97,7 @@ export default function Login({ navigation }){
                     setLogin({
                         ...login, ["email"]: "" ,
                            login , ["password"]: ""
-                      })            
+                      });           
 
                   setErrorLogin(true);
 
@@ -128,6 +139,12 @@ export default function Login({ navigation }){
 
     return(
 
+     <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}  
+      style={styles.body}
+     >
+
+
      <LinearGradient
        
         colors={
@@ -136,16 +153,12 @@ export default function Login({ navigation }){
               'rgba(0, 0, 45, 0.8)'  
             ]
         }     
-        style={styles.body}
+        
+        style={styles.containerMain}       
        >
 
-     <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.body}
-      >
 
-
-       <View>
+       <View  style={styles.contentMain}>
 
 
         <View>
@@ -246,9 +259,13 @@ export default function Login({ navigation }){
 
       <View style={{ height: 100 }}></View>
 
-      </KeyboardAvoidingView>
+      
 
      </LinearGradient>
+
+     </KeyboardAvoidingView>
+
+     
     )
 
 

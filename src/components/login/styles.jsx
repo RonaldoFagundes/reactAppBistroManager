@@ -4,10 +4,26 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create(
     {
+
+
        body:{
-        flex:1,
+        flex:1,         
+       },
+
+
+       containerMain:{
         alignItems: 'center',
         justifyContent: 'center',
+        height:'100%',
+        with:'100%'
+       },
+
+
+
+
+       contentMain:{
+        alignItems: 'center',
+        justifyContent: 'center',       
        },
 
 
@@ -36,12 +52,15 @@ export default StyleSheet.create(
         color: '#bdbdbd'
        },
 
+
+
+       
        linkSubscribe: {
         color: '#1877f2',
         fontSize: 16
       },
 
-       textAlert:{},
+      
       
 
        btnLogin: {
@@ -55,5 +74,9 @@ export default StyleSheet.create(
       },
 
       
+
+
+
+
     }
 );

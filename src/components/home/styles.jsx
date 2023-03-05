@@ -3,14 +3,82 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
 
+
+
+   body:{
+      flex:1     
+     },
+
+
+
+
+     containerMain:{
+      height:'auto',
+      with:'100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+     },
+
+
+
+     
+     textMain:{
+      color:'yellow',
+      fontSize: 18
+     },
+
+
+     textInfo:{
+      marginTop: 20,
+      color: 'white'
+     },
+
+
+
+   containerHeader:{
+      height:'auto',  
+      width:'auto',
+      
+      backgroundColor:'orange',
+      flexDirection: 'row',
+      justifyContent:'space-between ', 
+
+      paddingLeft:10,
+      paddingTop:20,
+
+      marginTop:10,
+      marginBottom:10
+   },
    
+
+
+     
    containerProducts:{
-      width:600,
+      width:800,
+
+      backgroundColor:'green',
+
+      flexDirection: 'col',  
+
+      padding:10
+   },
+
+
+
+   contentProducts:{
+      width:'auto',
       backgroundColor:'orange',
       flexDirection: 'row',     
       padding:10
    },
    
+
+
+
+
+
+
+
 
    contentProductsS:{
       width:60,     
@@ -20,6 +88,11 @@ export default StyleSheet.create({
       textAlign:'center'
    },
 
+
+
+
+
+
    contentProductsM:{
       width:160,     
       backgroundColor:'black',
@@ -27,6 +100,9 @@ export default StyleSheet.create({
       marginLeft:5,
       textAlign:'center'
    },
+
+
+
 
    contentProductsX:{
       width:240,     
@@ -36,18 +112,7 @@ export default StyleSheet.create({
       textAlign:'center'
    },
 
-
-   input: {
-      width: 100,
-      height: 50,
-      marginTop: 10,
-      padding: 10,
-      borderBottomWidth: 1,
-      borderBottomColor: "#F92E6A",
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      color: "#bdbdbd"
-    },
+  
 
 
    btn:{
@@ -58,6 +123,8 @@ export default StyleSheet.create({
      justifyContent:'center',
      alignItems:'center',
      marginBottom:10,
+     marginRight:5,
+     marginLeft:5
    }
 
 

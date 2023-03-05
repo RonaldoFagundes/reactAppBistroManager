@@ -19,7 +19,7 @@ import { AuthContext } from '../../contexts/auth';
      
 import styles from './styles';
 
-//import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 
@@ -35,7 +35,7 @@ export default function Home({ navigation }){
   const {user , setIdProduct } = useContext(AuthContext);
 
 
-  const [id,setId] = useState("");
+ // const [id,setId] = useState("");
 
 
 
@@ -108,16 +108,19 @@ fetch(`${endpointPhp}/?action=listprodutos`)
 	}
 
 
+     
+
+
 
   
 
-    const updateProduct =()=>{       
+    const updateProduct =(value)=>{       
    
-     setId("");
-     setIdProduct(id);
+     //setId("");
+     setIdProduct(value);
 
      navigation.navigate("Updateproducts");     
-     console.log(id)
+     console.log(value)
     }
 
 
@@ -127,58 +130,136 @@ fetch(`${endpointPhp}/?action=listprodutos`)
 
 
 
-    const deleteProduct =()=>{       
+    const deleteProduct =(value)=>{       
     
-       setId("");
-       setIdProduct(id);
+      // setId("");
+       setIdProduct(value);
   
        navigation.navigate("Deleteproducts");       
-       console.log(id)  
+       console.log(value)  
       }
 
 
 
 
   
-    return(
-      
+  return(     
 
-    <View >
+    <KeyboardAvoidingView
+       behavior={Platform.OS === "ios" ? "padding" : "height"}  
+       style={styles.body}   
+     >
+
+
+    <LinearGradient
+       
+       colors={
+           [
+             'rgba(0, 0, 45, 1)',
+             'rgba(0, 0, 45, 0.8)'  
+           ]
+       }     
+      >
+
+
 
       <ScrollView>
+        
 
-          
-         <Text >Tela Home OK</Text>
+       <View style={styles.containerHeader}>
 
-
-            <Text>{user}</Text>
+          <Text style={styles.textInfo}>{`Bem vindo(a)! ${user}`}</Text>
              
+          <Text style={styles.textMain}>Tela Home</Text>
+
 
             <TouchableOpacity
-               style={styles.btn}            
+               style={styles.btn}         
+               onPress={() =>
+                navigation.navigate("Login")  }
+              >
+              <Text >Logout</Text>
+            </TouchableOpacity>
 
-              onPress={() =>
+            
+
+       </View>
+
+
+
+
+         <View  style={styles.containerMain}>
+
+
+
+            <TouchableOpacity
+               style={styles.btn}         
+               onPress={() =>
                 navigation.navigate("Insertproducts")  }
-             >
+              >
               <Text >Adcionar</Text>
             </TouchableOpacity>
 
-            <View>                 
-                                  
+
+
+
+
+           
+
+
+
+
+
+           <View style={styles.containerProducts}>                 
+
+
+             <View  style={styles.contentProducts}> 
+
+              <Text style={styles.contentProductsS}>id</Text> 
+              <Text style={styles.contentProductsM}>nome</Text> 
+              <Text style={styles.contentProductsM}>info</Text>
+              <Text style={styles.contentProductsS}>preco</Text>
+              <Text style={styles.contentProductsM}>Açoes</Text>
+
+             </View> 
+
+
               {            
               
               products.map(
 
                 (produto) => 
 
-                <View style={styles.containerProducts} key={produto.id}>
+                <View  style={styles.contentProducts} key={produto.id}>
                                    
                   <Text style={styles.contentProductsS}>{produto.id}</Text> 
                   <Text style={styles.contentProductsM}>{produto.nome}</Text> 
-                  <Text style={styles.contentProductsX}>{produto.info}</Text>
+                  <Text style={styles.contentProductsM}>{produto.info}</Text>
                   <Text style={styles.contentProductsS}>{`R$ ${produto.preco},00`}</Text>
-                              
-                  
+
+
+
+                  <View>
+                    <TouchableOpacity   
+                     style={styles.btn}            
+                     onPress={() => updateProduct(produto.id)}>
+                     <Text >Update</Text>
+                   </TouchableOpacity>
+                  </View>
+
+
+
+
+                  <View>
+                    <TouchableOpacity
+                     style={styles.btn}                   
+                     onPress={() => deleteProduct(produto.id)}>
+                     <Text >Delete</Text>
+                   </TouchableOpacity>
+                  </View>
+
+
+
                 </View>
 
                   
@@ -188,11 +269,16 @@ fetch(`${endpointPhp}/?action=listprodutos`)
             }
             
             
+
           </View>        
 
 
 
+         </View>
 
+
+          {/* 
+          
           <View>
 
 
@@ -225,7 +311,9 @@ fetch(`${endpointPhp}/?action=listprodutos`)
 
 
 
-          </View>
+          </View> 
+          
+          */}
 
 
      
@@ -234,7 +322,19 @@ fetch(`${endpointPhp}/?action=listprodutos`)
 
       </ScrollView>
 
-    </View>
+
+
+   
+
+
+
+    <View style={{ height: 100 }}></View>
+
+   
+
+     </LinearGradient>
+
+  </KeyboardAvoidingView>
 
 
     );

@@ -16,10 +16,17 @@ import {
 
      export default function Insertuser({ }){
 
+
+
         return(
+
             <View>
+
                 <Text>Tela de cadastro de usuário</Text>
+                
             </View>
+
+
         );
 
      };

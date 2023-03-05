@@ -3,42 +3,113 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
 
-   
-   containerProducts:{
-      width:600,
+
+
+
+
+   body:{
+      flex:1     
+     },
+
+
+
+
+     containerMain:{
+      height:'auto',
+      with:'100%'
+     },
+
+
+
+
+
+
+
+
+     containerHeader:{
+      height:'auto',  
+      width:'auto',
+      
       backgroundColor:'orange',
-      flexDirection: 'row',     
-      padding:10
+      flexDirection: 'row',
+      justifyContent:'space-between ', 
+
+      paddingLeft:10,
+      paddingTop:20,
+
+      marginTop:10,
+      marginBottom:10
    },
+
    
 
-   contentProductsS:{
-      width:60,     
-      backgroundColor:'black',
-      color:'yellow',
-      marginLeft:5,
-      textAlign:'center'
-   },
 
-   contentProductsM:{
-      width:160,     
-      backgroundColor:'black',
-      color:'yellow',
-      marginLeft:5,
-      textAlign:'center'
-   },
 
-   contentProductsX:{
-      width:240,     
-      backgroundColor:'black',
+
+   textMain:{
       color:'yellow',
-      marginLeft:5,
-      textAlign:'center'
-   },
+      fontSize: 18
+     },
+
+
+     textInfo:{
+      marginTop: 20,
+      color: 'white'
+     },
+  
+  
+  
+
+
+
+
+     containerData:{
+       
+        alignItems: 'center',
+        justifyContent: 'center',
+
+        width:'auto',
+        height:'auto',
+        
+        paddingBottom:20,
+        
+
+        backgroundColor:'green',
+     },  
+
+
+
+
+
+     contentData: {
+      width: 300,
+      height: 50,
+      marginTop: 10,
+      padding: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: "#F92E6A",
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      color: "#bdbdbd",
+      fontSize: 18
+    },
+
+
+
 
 
   
-
+   btn:{
+      backgroundColor:'#F92E6A',
+      height:40,
+      width:100,
+      borderRadius:10,
+      justifyContent:'center',
+      alignItems:'center',
+      marginTop:40,
+    }
+ 
+ 
 
 
 

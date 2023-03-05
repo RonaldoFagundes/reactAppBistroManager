@@ -16,7 +16,7 @@ import { AuthContext } from '../../contexts/auth';
      
 import styles from './styles';
 
-//import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 
@@ -72,6 +72,10 @@ export default function Deleteproducts({ navigation }){
 
 
 
+
+
+
+
       const getProducts = async()=>{
 		
         const endpointPhp  = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
@@ -100,6 +104,10 @@ export default function Deleteproducts({ navigation }){
     
     
     
+
+
+
+
     
     
       const deleteProduct = async()=>{
@@ -133,79 +141,115 @@ export default function Deleteproducts({ navigation }){
 
 
 
+
+
+
    return(
 
-     <View >
+
+   <KeyboardAvoidingView
+     behavior={Platform.OS === "ios" ? "padding" : "height"}
+     style={styles.body}
+ 
+   >
+
+
+
+    <LinearGradient
+       
+    colors={
+        [
+          'rgba(0, 0, 45, 1)',
+          'rgba(0, 0, 45, 0.8)'  
+        ]
+    }     
+    style={styles.containerMain}
+   >
+
+ 
+
+
+
+    
 
         <ScrollView>
   
+                    
+
+        <View style={styles.containerHeader}>
+
+              <Text style={styles.textInfo}>{`User :  ${user}`}</Text>
+             
+              <Text style={styles.textMain}>Tela Delete</Text>
+
+
+              <View>
+
+                <TouchableOpacity
+                 style={styles.btn}                   
+                 onPress={() => navigation.navigate("Home")}>
+                 <Text >Voltar</Text>
+               </TouchableOpacity>
+
+              </View>
             
-           <Text >Tela Delete</Text>
+
+         </View>
 
 
-             <Text >{`user ${user}`}</Text>
-  
+
   
                            
   
-             <View>                 
+           <View style={styles.containerData}>            
 
 
-                   <Text>{products.id}</Text> 
+                   <Text >{` Id :  ${products.id}`}</Text> 
 
-                   <Text>{products.nome}</Text> 
+                   <Text style={styles.contentData}>{` Img :     ${products.img}`}</Text> 
 
-                   <Text>{products.info}</Text> 
+                   <Text style={styles.contentData}>{` Nome :    ${products.nome}`}</Text> 
 
-                   <Text>{products.preco}</Text>  
+                   <Text style={styles.contentData}>{` Info  :   ${products.info}`}</Text> 
+
+                   <Text style={styles.contentData}>{` Preço :   ${products.preco}`}</Text>  
 
                 
-              
-              
-            </View>        
-  
-  
-  
-  
-
-
-           <View>
-    
-            
+                            
                  
-               <Text style={styles.contentProductsS}
 
-                  onPress={() => deleteProduct()}
-                >
-                  Deletar
-                
-                </Text>
-                
-          
-               
-                <Text style={styles.contentProductsS}
+                  <View>
 
-                  onPress={() => navigation.navigate("Home")}
-                >
-                  Voltar
-                
-                </Text>
-             
-   
+                    <TouchableOpacity
+                     style={styles.btn}                   
+                     onPress={() => deleteProduct()}>
+                     <Text >Deletar</Text>
+                   </TouchableOpacity>
+
+                  </View>
+
+           
   
-            </View>
-  
-  
-       
-
-
+              </View>
   
   
   
         </ScrollView>
   
-      </View>
+    
   
+
+
+
+
+      <View style={{ height: 100 }}></View>
+
+   
+
+   </LinearGradient>
+
+  </KeyboardAvoidingView>
+
   
       );
    }
