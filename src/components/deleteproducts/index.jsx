@@ -1,19 +1,19 @@
-import React, { useContext, useState, useEffect}  from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import {
-     Alert, 
-     View, 
-     ScrollView, 
-     Text,
-     TextInput, 
-     TouchableOpacity,
-     KeyboardAvoidingView,
-     Platform 
-     } from 'react-native';
+  Alert,
+  View,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform
+} from 'react-native';
 
 
 import { AuthContext } from '../../contexts/auth';
-     
+
 import styles from './styles';
 
 import { LinearGradient } from 'expo-linear-gradient';
@@ -22,11 +22,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 
 
-export default function Deleteproducts({ navigation }){
+export default function Deleteproducts({ navigation }) {
 
 
-  
-  const {user , idProduct } = useContext(AuthContext);
+
+  const { user, idProduct } = useContext(AuthContext);
 
   const [products, setProducts] = useState([]);
 
@@ -34,7 +34,6 @@ export default function Deleteproducts({ navigation }){
 
 
 
- 
 
 
 
@@ -44,12 +43,13 @@ export default function Deleteproducts({ navigation }){
 
 
 
-  useEffect(()=>{ 
+
+  useEffect(() => {
 
 
     getProducts();
 
-    
+
     /*
     const endpointPhp  = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
 
@@ -65,9 +65,9 @@ export default function Deleteproducts({ navigation }){
          });
         */
 
-       
-    
-      },[]);  
+
+
+  }, []);
 
 
 
@@ -76,180 +76,200 @@ export default function Deleteproducts({ navigation }){
 
 
 
-      const getProducts = async()=>{
-		
-        const endpointPhp  = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
-        
-        await fetch(`${endpointPhp}/?action=getproduto`,{
-          method:'POST',
-          headers:{
-              'Content-Type': 'application/json'
-          },
-    
-           body:JSON.stringify({
-            idProduct
-          })     
-              
-       })  
-    
-       .then(res => res.json())
-              .then(
-                   (result)=>{
-                       setProducts(result)
-                   }
-              )   		
-      }
-    
-    
-    
-    
-    
+  const getProducts = async () => {
 
+    const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
 
+    await fetch(`${endpointPhp}/?action=getproduto`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
 
+      body: JSON.stringify({
+        idProduct
+      })
 
-    
-    
-      const deleteProduct = async()=>{
-        
-        const endpointPhp  = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
-        
-        await fetch(`${endpointPhp}/?action=deleteproduto`,{
-          method:'POST',
-          headers:{
-              'Content-Type': 'application/json'
-          },
-    
-           body:JSON.stringify({
-            idProduct
-          })     
-              
-       })  
-    
-       .then(res => res.json())
-              .then(
-                   (result)=>{
-                      console.log(result);
-                   }
-              )   		
-      }
+    })
 
-
-
-
-      
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setProducts(result)
+        }
+      )
+  }
 
 
 
 
 
 
-   return(
-
-
-   <KeyboardAvoidingView
-     behavior={Platform.OS === "ios" ? "padding" : "height"}
-     style={styles.body}
- 
-   >
 
 
 
-    <LinearGradient
-       
-    colors={
-        [
-          'rgba(0, 0, 45, 1)',
-          'rgba(0, 0, 45, 0.8)'  
-        ]
-    }     
-    style={styles.containerMain}
-   >
-
- 
 
 
+  const deleteProduct = async () => {
 
-    
+    const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
+
+    await fetch(`${endpointPhp}/?action=deleteproduto`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+
+      body: JSON.stringify({
+        idProduct
+      })
+
+    })
+
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(result);
+        }
+      )
+  }
+
+
+
+
+
+
+
+
+
+
+
+  return (
+
+
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.body}
+
+    >
+
+
+
+      <LinearGradient
+
+        colors={
+          [
+            'rgba(251, 195, 95, 1.0)',
+            'rgba(251, 195, 95, 0.5)'
+          ]
+        }
+        style={styles.containerMain}
+      >
+
+
 
         <ScrollView>
-  
-                    
-
-        <View style={styles.containerHeader}>
-
-              <Text style={styles.textInfo}>{`User :  ${user}`}</Text>
-             
-              <Text style={styles.textMain}>Tela Delete</Text>
-
-
-              <View>
-
-                <TouchableOpacity
-                 style={styles.btn}                   
-                 onPress={() => navigation.navigate("Home")}>
-                 <Text >Voltar</Text>
-               </TouchableOpacity>
-
-              </View>
-            
-
-         </View>
 
 
 
-  
-                           
-  
-           <View style={styles.containerData}>            
+          <LinearGradient
+
+            colors={
+              [
+                'rgba(250, 65, 35, 1.0)',
+                'rgba(250, 85, 38, 0.5)'
+              ]
+            }
+              style={styles.containerHeader}
+            >
+          
+
+            <Text style={styles.textMain}>Tela Delete</Text>
 
 
-                   <Text >{` Id :  ${products.id}`}</Text> 
+          <View style={styles.contentHeader}>
 
-                   <Text style={styles.contentData}>{` Img :     ${products.img}`}</Text> 
+           <Text style={styles.textInfo}>{`User :  ${user}`}</Text>
 
-                   <Text style={styles.contentData}>{` Nome :    ${products.nome}`}</Text> 
 
-                   <Text style={styles.contentData}>{` Info  :   ${products.info}`}</Text> 
+            <LinearGradient
+              colors={['#66110A', '#F42E16']}
+              style={styles.containerBtn}
+            >
 
-                   <Text style={styles.contentData}>{` Preço :   ${products.preco}`}</Text>  
 
-                
-                            
-                 
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Home")}>
+              <Text style={styles.textMain}>Voltar</Text>
+            </TouchableOpacity>
 
-                  <View>
 
-                    <TouchableOpacity
-                     style={styles.btn}                   
-                     onPress={() => deleteProduct()}>
-                     <Text >Deletar</Text>
-                   </TouchableOpacity>
+            </LinearGradient>
 
-                  </View>
+          </View>
 
-           
-  
-              </View>
-  
-  
-  
+
+          </LinearGradient>
+
+
+
+
+
+
+          <LinearGradient
+            colors={['#66110A', '#F42E16']}
+            style={styles.containerData}
+          >
+     
+            <Text >{` Id :  ${products.id}`}</Text>
+
+            <Text style={styles.contentData}>{` Img :     ${products.img}`}</Text>
+
+            <Text style={styles.contentData}>{` Nome :    ${products.nome}`}</Text>
+
+            <Text style={styles.contentData}>{` Info  :   ${products.info}`}</Text>
+
+            <Text style={styles.contentData}>{` Preço :   ${products.preco}`}</Text>
+
+
+
+
+
+            <LinearGradient
+                  colors={['#EB610C', '#FFA533']}
+                  style={styles.containerBtn}
+                >
+
+              <TouchableOpacity               
+                onPress={() => deleteProduct()}>
+                <Text style={styles.textMain} >Deletar</Text>
+
+              </TouchableOpacity>
+
+           </LinearGradient>
+
+
+
+          </LinearGradient>
+
+
+
         </ScrollView>
-  
-    
-  
 
 
 
 
-      <View style={{ height: 100 }}></View>
 
-   
 
-   </LinearGradient>
 
-  </KeyboardAvoidingView>
+        <View style={{ height: 100 }}></View>
 
-  
-      );
-   }
+
+
+      </LinearGradient>
+
+    </KeyboardAvoidingView>
+
+
+  );
+}

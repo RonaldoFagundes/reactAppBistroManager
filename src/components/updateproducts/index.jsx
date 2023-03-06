@@ -36,31 +36,31 @@ export default function Updateproducts({ navigation }) {
 
   const [produto, setProduto] = useState({
 
-    img:'',
-    nome:'',
-    info:'',
-    preco:'',
-    estoque:'',
-    producao:''
-});
+    img: '',
+    nome: '',
+    info: '',
+    preco: '',
+    estoque: '',
+    producao: ''
+  });
 
 
 
 
 
-const handleInputChange=(atribute, value)=>{
+  const handleInputChange = (atribute, value) => {
 
-     setProduto({
-        ...produto,[atribute]:value 
-     })
-}
+    setProduto({
+      ...produto, [atribute]: value
+    })
+  }
 
 
 
-const updateProduct = async()=>{
+  const updateProduct = async () => {
 
-  console.log(produto)
-}
+    console.log(produto)
+  }
 
 
 
@@ -149,30 +149,45 @@ const updateProduct = async()=>{
 
         colors={
           [
-            'rgba(0, 0, 45, 1)',
-            'rgba(0, 0, 45, 0.8)'
+            'rgba(251, 195, 95, 1.0)',
+            'rgba(251, 195, 95, 0.5)'
           ]
         }
         style={styles.containerMain}
       >
 
-     
-
-
-          <ScrollView>
 
 
 
-
-            <View style={styles.containerHeader}>
-
-              <Text style={styles.textInfo}>{`User: ${user}`}</Text>
-
-              <Text style={styles.textMain}>Tela Update</Text>
+        <ScrollView>
 
 
 
-              <View>
+
+          <LinearGradient
+
+            colors={
+              [
+                'rgba(250, 65, 35, 1.0)',
+                'rgba(250, 85, 38, 0.5)'
+              ]
+            }
+
+            style={styles.containerHeader}
+          >
+
+       
+
+            <Text style={styles.textMain}>Tela Update</Text>
+
+            <View style={styles.contentHeader}>
+
+            <Text style={styles.textInfo}>{`User: ${user}`}</Text>
+
+              <LinearGradient
+                colors={['#66110A', '#F42E16']}
+                style={styles.containerBtn}
+              >
 
                 <TouchableOpacity
                   style={styles.btn}
@@ -180,11 +195,12 @@ const updateProduct = async()=>{
                   <Text >Voltar</Text>
                 </TouchableOpacity>
 
-              </View>
+              </LinearGradient>
 
 
             </View>
 
+          </LinearGradient>
 
 
 
@@ -192,140 +208,159 @@ const updateProduct = async()=>{
 
 
 
-           <View style={styles.containerData}>
 
 
-              <Text style={styles.textMain}>{` id ${products.id}`}</Text>
-
-
-            
-
-              <TextInput 
-                style={styles.input}
-                placeholder={` Img :   ${products.img}`}
-                placeholderTextColor="white"
-                type="text"
-
-                onChangeText={
-                  (valor) => handleInputChange("img", (valor))
-                }
-                value={produto.img}
-              />
+          <LinearGradient
+            colors={['#66110A', '#F42E16']}
+            style={styles.containerData}
+          >
 
 
 
 
-
-              <TextInput
-                style={styles.input}
-                placeholder={` Nome :   ${products.nome}`}
-                placeholderTextColor="white"
-                type="text"
-
-                onChangeText={
-                  (valor) => handleInputChange("nome", (valor))
-                }
-                value={produto.nome}
-              />
+            <Text style={styles.textMain}>{` id ${products.id}`}</Text>
 
 
 
 
-              <TextInput
-                style={styles.input}
-                placeholder={` Info :   ${products.info}`}
-                placeholderTextColor="white"
-                type="text"
+            <TextInput
+              style={styles.input}
+              placeholder={` Img :   ${products.img}`}
+              placeholderTextColor="white"
+              type="text"
 
-                onChangeText={
-                  (valor) => handleInputChange("info", (valor))
-                }
-                value={produto.info}
-              />
-
-
-
-
-              <TextInput
-                style={styles.input}
-                placeholder={` Preco :   ${products.preco}`}
-                placeholderTextColor="white"
-                type="text"
-
-                onChangeText={
-                  (valor) => handleInputChange("preco", (valor))
-                }
-                value={produto.preco}
-              />
+              onChangeText={
+                (valor) => handleInputChange("img", (valor))
+              }
+              value={produto.img}
+            />
 
 
 
 
 
-              <TextInput
-                style={styles.input}
-                placeholder={` Estoque :   ${products.estoque}`}
-                placeholderTextColor="white"
-                type="text"
+            <TextInput
+              style={styles.input}
+              placeholder={` Nome :   ${products.nome}`}
+              placeholderTextColor="white"
+              type="text"
 
-                onChangeText={
-                  (valor) => handleInputChange("estoque", (valor))
-                }
-                value={produto.estoque}
-              />
-
-
-
-
-
-              <TextInput
-                style={styles.input}
-                placeholder={` Produção :   ${products.producao}`}
-                placeholderTextColor="white"
-                type="text"
-
-                onChangeText={
-                  (valor) => handleInputChange("producao", (valor))
-                }
-                value={produto.producao}
-              />
+              onChangeText={
+                (valor) => handleInputChange("nome", (valor))
+              }
+              value={produto.nome}
+            />
 
 
 
 
+            <TextInput
+              style={styles.input}
+              placeholder={` Info :   ${products.info}`}
+              placeholderTextColor="white"
+              type="text"
+
+              onChangeText={
+                (valor) => handleInputChange("info", (valor))
+              }
+              value={produto.info}
+            />
 
 
-              {
-                produto.img === "" || produto.nome === "" || produto.info === "" || produto.preco === "" 
 
-                  ?
+
+            <TextInput
+              style={styles.input}
+              placeholder={` Preco :   ${products.preco}`}
+              placeholderTextColor="white"
+              type="text"
+
+              onChangeText={
+                (valor) => handleInputChange("preco", (valor))
+              }
+              value={produto.preco}
+            />
+
+
+
+
+
+            <TextInput
+              style={styles.input}
+              placeholder={` Estoque :   ${products.estoque}`}
+              placeholderTextColor="white"
+              type="text"
+
+              onChangeText={
+                (valor) => handleInputChange("estoque", (valor))
+              }
+              value={produto.estoque}
+            />
+
+
+
+
+
+            <TextInput
+              style={styles.input}
+              placeholder={` Produção :   ${products.producao}`}
+              placeholderTextColor="white"
+              type="text"
+
+              onChangeText={
+                (valor) => handleInputChange("producao", (valor))
+              }
+              value={produto.producao}
+            />
+
+
+
+
+
+
+            {
+              produto.img === "" || produto.nome === "" || produto.info === "" || produto.preco === ""
+
+                ?
+
+
+                <LinearGradient
+                  colors={['#EB610C', '#FFA533']}
+                  style={styles.containerBtn}
+                >
 
                   <TouchableOpacity
-                    style={styles.btn}
                     disabled={true}
                   >
                     <Text style={styles.textMain}>Editar</Text>
                   </TouchableOpacity>
 
+                </LinearGradient>
 
-                  :
-
-                  <View>
-                    <TouchableOpacity
-                      style={styles.btn}
-                      onPress={() => updateProduct()}>
-                      <Text style={styles.textMain}>Atualizar</Text>
-                    </TouchableOpacity>
-                  </View>
-              }
+                :
 
 
+                <LinearGradient
+                  colors={['#EB610C', '#FFA533']}
+                  style={styles.containerBtn}
+                >
+
+                  <TouchableOpacity
+                    onPress={() => updateProduct()}>
+                    <Text style={styles.textMain}>Atualizar</Text>
+                  </TouchableOpacity>
+
+                </LinearGradient>
+
+            }
 
 
 
 
 
-              {/*
+
+
+            {/*
               
               <View style={styles.contentData}>
 
@@ -371,7 +406,7 @@ const updateProduct = async()=>{
 
 
 
-              {/* 
+            {/* 
                 
                 
                 {            
@@ -410,17 +445,17 @@ const updateProduct = async()=>{
 
 
 
-            </View>
+          </LinearGradient>
 
 
 
 
-          </ScrollView>
+        </ScrollView>
 
 
 
 
-      
+
 
 
 

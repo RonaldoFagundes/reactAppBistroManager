@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 
 export default StyleSheet.create({
@@ -7,81 +7,85 @@ export default StyleSheet.create({
 
 
 
-   body:{
-      flex:1     
-     },
-
-
-
-
-     containerMain:{
-      height:'auto',
-      with:'100%'
-     },
-
-
-
-
-
-
-
-
-     containerHeader:{
-      height:'auto',  
-      width:'auto',
-      
-      backgroundColor:'orange',
-      flexDirection: 'row',
-      justifyContent:'space-between ', 
-
-      paddingLeft:10,
-      paddingTop:20,
-
-      marginTop:10,
-      marginBottom:10
+   body: {
+      flex: 1
    },
 
-   
 
 
 
-
-   textMain:{
-      color:'yellow',
-      fontSize: 18
-     },
-
-
-     textInfo:{
-      marginTop: 20,
-      color: 'white'
-     },
-  
-  
-  
-
-
-
-
-     containerData:{
-       
-        alignItems: 'center',
-        justifyContent: 'center',
-
-        width:'auto',
-        height:'auto',
-        
-        paddingBottom:20,
-        
-
-        backgroundColor:'green',
-     },  
+   containerMain: {
+      height: 'auto',
+      with: '100%'
+   },
 
 
 
 
 
-     contentData: {
+   containerHeader: {
+      height: 'auto',
+      width: 'auto',
+      flexDirection:'col',
+      textAlign: 'center',
+      padding:20,    
+      marginBottom: 10
+   },
+
+
+   contentHeader: {
+      flexDirection: 'row',
+      justifyContent: 'space-between ',
+      marginTop:20
+    },
+
+
+
+
+
+
+   textMain: {
+      color: '#5D3806',
+      fontWeight: 'bold',
+      fontSize: 22
+   },
+
+
+
+
+
+   textInfo: {
+      color: '#F4A716',
+      fontWeight: 'bold',
+      fontSize: 12,
+   },
+
+
+
+
+
+   textAlert: {
+      color: '#DAD27D',
+      fontSize: 14
+   },
+
+
+
+
+   containerData: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 'auto',
+      height: 'auto',
+      paddingBottom: 20,
+      backgroundColor: 'green',
+   },
+
+
+
+
+
+   contentData: {
       width: 300,
       height: 50,
       marginTop: 10,
@@ -92,24 +96,19 @@ export default StyleSheet.create({
       marginRight: 'auto',
       color: "#bdbdbd",
       fontSize: 18
-    },
+   },
 
 
 
 
-
-  
-   btn:{
-      backgroundColor:'#F92E6A',
-      height:40,
-      width:100,
-      borderRadius:10,
-      justifyContent:'center',
-      alignItems:'center',
-      marginTop:40,
-    }
- 
- 
+   containerBtn: {
+      width: 100,
+      height: 40,
+      justifyContent: 'center',
+      borderRadius: 10,
+      marginTop: 40,     
+      textAlign: 'center',
+   },
 
 
 

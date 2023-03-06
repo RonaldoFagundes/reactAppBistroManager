@@ -155,8 +155,8 @@ fetch(`${endpointPhp}/?action=listprodutos`)
        
        colors={
            [
-             'rgba(0, 0, 45, 1)',
-             'rgba(0, 0, 45, 0.8)'  
+            'rgba(251, 195, 95, 1.0)',
+            'rgba(251, 195, 95, 0.5)'
            ]
        }     
       >
@@ -166,24 +166,54 @@ fetch(`${endpointPhp}/?action=listprodutos`)
       <ScrollView>
         
 
-       <View style={styles.containerHeader}>
-
-          <Text style={styles.textInfo}>{`Bem vindo(a)! ${user}`}</Text>
-             
+      <LinearGradient
+       
+          colors={
+             [
+              'rgba(250, 65, 35, 1.0)',
+              'rgba(250, 85, 38, 0.5)'
+             ]
+         }  
+       
+       style={styles.containerHeader}
+      >
+     
+                     
           <Text style={styles.textMain}>Tela Home</Text>
 
 
-            <TouchableOpacity
-               style={styles.btn}         
-               onPress={() =>
+         <View style={styles.contentHeader}>
+
+
+           <Text style={styles.textAlert}>{`Bem vindo(a)! ${user}`}</Text>
+
+
+            <LinearGradient
+               colors={[ '#66110A', '#F42E16']}
+               style={styles.containerBtn}
+             >
+
+             <TouchableOpacity                
+                onPress={() =>
                 navigation.navigate("Login")  }
-              >
-              <Text >Logout</Text>
-            </TouchableOpacity>
+               >
+               <Text style={styles.textInfo} >Logout</Text>
+             </TouchableOpacity>
 
-            
+            </LinearGradient>  
+          
 
-       </View>
+          </View>
+
+
+
+
+       </LinearGradient>
+
+
+
+
+
 
 
 
@@ -191,14 +221,19 @@ fetch(`${endpointPhp}/?action=listprodutos`)
          <View  style={styles.containerMain}>
 
 
+           <LinearGradient
+               colors={[  '#66110A', '#F42E16']}
+               style={styles.containerBtn}        
+             >
 
-            <TouchableOpacity
-               style={styles.btn}         
-               onPress={() =>
-                navigation.navigate("Insertproducts")  }
-              >
-              <Text >Adcionar</Text>
+             <TouchableOpacity
+                 onPress={() =>
+                 navigation.navigate("Insertproducts")  }
+               >
+               <Text style={styles.textInfo}>Adcionar</Text>
             </TouchableOpacity>
+
+            </LinearGradient>
 
 
 
@@ -238,25 +273,34 @@ fetch(`${endpointPhp}/?action=listprodutos`)
                   <Text style={styles.contentProductsS}>{`R$ ${produto.preco},00`}</Text>
 
 
+      
+                  <LinearGradient
+                    colors={[  '#66110A', '#F42E16']}
+                    style={styles.containerBtn} 
+                    >
 
-                  <View>
-                    <TouchableOpacity   
-                     style={styles.btn}            
-                     onPress={() => updateProduct(produto.id)}>
-                     <Text >Update</Text>
+                    <TouchableOpacity                                  
+                      onPress={() => updateProduct(produto.id)}>
+                      <Text style={styles.textInfo}>Update</Text>
                    </TouchableOpacity>
-                  </View>
+                 
+
+                  </LinearGradient>
 
 
+                  <LinearGradient
+                    colors={[  '#66110A', '#F42E16']}
+                    style={styles.containerBtn} 
+                    >
 
-
-                  <View>
+                  
                     <TouchableOpacity
-                     style={styles.btn}                   
-                     onPress={() => deleteProduct(produto.id)}>
-                     <Text >Delete</Text>
-                   </TouchableOpacity>
-                  </View>
+                                        
+                      onPress={() => deleteProduct(produto.id)}>
+                      <Text style={styles.textInfo} >Delete</Text>
+                    </TouchableOpacity>
+                  
+                  </LinearGradient>
 
 
 

@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect}  from 'react';
+import React, { useContext, useState}  from 'react';
 
 
 
-import {
-     Alert, 
-     View, 
-     ScrollView, 
+import {     
+     View,     
      Text,
      TextInput, 
      TouchableOpacity,
@@ -31,8 +29,15 @@ export default function Login({ navigation }){
 
 
   const {setUser}  = useContext(AuthContext);
+
  
-  const [errorLogin, setErrorLogin] = useState("");
+  const [errorLogin, setErrorLogin] = useState({    
+    status: '',
+    msg:''
+});
+
+
+
 
   const [login , setLogin]  = useState({
     email:'',
@@ -80,8 +85,11 @@ export default function Login({ navigation }){
          
             if(result != "email ou senha incorretos!" ){
 
-                 setUser(result)
-                 setErrorLogin(false);
+                 setUser(result);               
+
+                 setErrorLogin({
+                  ...errorLogin,['status'] :false 
+                });
 
                  setLogin({
                   ...login, ["email"]: "" ,
@@ -93,41 +101,24 @@ export default function Login({ navigation }){
                   console.log(" email "+login.email+" senha "+login.password+" conectado com sucesso com ususario  "+result);
 
                  }else{
-                                  
-                    setLogin({
+                                
+                      setErrorLogin({
+                        ...errorLogin,['status'] :true,
+                           errorLogin,['msg']:result
+                      });
+                           
+
+                      setLogin({
                         ...login, ["email"]: "" ,
                            login , ["password"]: ""
-                      });           
+                      });     
 
-                  setErrorLogin(true);
-
-                  console.log("erro "+login.email+" "+login.password)
+                  console.log("erro "+login.email+" "+login.password+" "+result)
                 }
            
               
            });
       
-
-
-
-       /*    
-       await fetch(`${endpointPhp}/?action=login&email=${email}&password=${password}`,{
-           method:"POST"
-        })
-
-        .then(res => res.json())
-        .then(      
-            (result)=>{              
-
-            }      
-         )
-       .catch(() => {
-        Alert.alert('Erro', 'Não foi possível carregar os dados da Api');
-        });
-
-        */
-
-
       }
 
 
@@ -149,11 +140,10 @@ export default function Login({ navigation }){
        
         colors={
             [
-              'rgba(0, 0, 45, 1)',
-              'rgba(0, 0, 45, 0.8)'  
+              'rgba(251, 195, 95, 1.0)',
+              'rgba(251, 195, 95, 0.5)'
             ]
-        }     
-        
+        } 
         style={styles.containerMain}       
        >
 
@@ -172,7 +162,7 @@ export default function Login({ navigation }){
            <TextInput
              style={styles.input}
              placeholder=" digite seu email"
-             placeholderTextColor="#ffffff"
+             placeholderTextColor="#cc0000"
              type="text"
          
            onChangeText={
@@ -189,7 +179,7 @@ export default function Login({ navigation }){
                 style={styles.input}
                 secureTextEntry={true}
                 placeholder="digite sua senha"
-                placeholderTextColor="#ffffff"
+                placeholderTextColor="#cc0000"
                 type="text"              
 
                 onChangeText={
@@ -204,10 +194,10 @@ export default function Login({ navigation }){
            {
         
            
-           errorLogin === true
+           errorLogin.status === true
             ?
              <View>
-               <Text style={styles.textMain}>email ou senha invalidos!</Text>
+               <Text style={styles.textAlert}>{errorLogin.msg}</Text>
              </View>
              :
              <View></View>
@@ -220,22 +210,37 @@ export default function Login({ navigation }){
 
              ?
 
+             <LinearGradient
+               colors={[ '#EB610C', '#FFA533']}
+               style={styles.containerBtn}
+             >
+
              <TouchableOpacity 
-                style={styles.btnLogin}
-                disabled={true}              
+                 disabled={true}              
                >
-                <Text style={styles.textMain}>Login</Text>
+                <Text style={styles.textMain} >Login</Text>
              </TouchableOpacity>
 
+             </LinearGradient>
+
             : 
-                 
-            <View>
-              <TouchableOpacity 
-                style={styles.btnLogin}
+               
+            
+
+
+            <LinearGradient
+               colors={[ '#D4580B', '#FA6326']}
+               style={styles.containerBtn}
+             >
+              <TouchableOpacity                                      
                 onPress={logar}>
-                <Text style={styles.textMain}>Logar</Text>
+                <Text style={styles.textMain} >Logar</Text>
               </TouchableOpacity>
-          </View>
+          
+              </LinearGradient>
+
+
+
 
           }
 
@@ -244,16 +249,16 @@ export default function Login({ navigation }){
 
           {` não tem cadastro ?  `}
 
-          <Text style={styles.linkSubscribe}
+          <Text style={styles.textAlert}
             onPress={()=>navigation.navigate("Insertuser")}
            >
             {` cadastre-se agora... `}
           </Text>
 
-        </Text>
+       </Text>
 
  
-        </View>
+      </View>
 
 
 

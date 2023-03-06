@@ -62,7 +62,6 @@ export default function Insertproducts({ navigation }) {
   /*
   const addProduc=()=>{
 
-
       console.log(
 
           " img   "+produto.img+
@@ -140,8 +139,8 @@ export default function Insertproducts({ navigation }) {
 
         colors={
           [
-            'rgba(0, 0, 45, 1)',
-            'rgba(0, 0, 45, 0.8)'
+            'rgba(251, 195, 95, 1.0)',
+            'rgba(251, 195, 95, 0.5)'
           ]
         }
         style={styles.containerMain}
@@ -154,39 +153,51 @@ export default function Insertproducts({ navigation }) {
 
 
 
-          <View style={styles.containerHeader}>
+          <LinearGradient
 
+            colors={
+              [
+                'rgba(250, 65, 35, 1.0)',
+                'rgba(250, 85, 38, 0.5)'
+              ]
+            }
+
+            style={styles.containerHeader}
+          >
+         
+
+          <Text style={styles.textMain} >Tela de cadastro de produtos</Text>
+
+
+            <View style={styles.contentHeader}>
 
             <Text style={styles.textInfo}>{`user: ${user}`}</Text>
 
-
-            <Text style={styles.textMain} >Tela de cadastro de produtos</Text>
-
-
-
-            <View>
-
+            <LinearGradient
+              colors={['#66110A', '#F42E16']}
+              style={styles.containerBtn}
+            >
               <TouchableOpacity
-                style={styles.btn}
+
                 onPress={() => navigation.navigate("Home")}>
                 <Text style={styles.textMain}>Voltar</Text>
               </TouchableOpacity>
 
-            </View>
-
-
-
+            </LinearGradient>
 
           </View>
 
 
+          </LinearGradient>
 
 
 
 
 
-          <View style={styles.containerForm}>
-
+          <LinearGradient
+            colors={['#66110A', '#F42E16']}
+            style={styles.containerForm}
+          >
 
 
             <TextInput
@@ -289,23 +300,35 @@ export default function Insertproducts({ navigation }) {
 
                 ?
 
-                <TouchableOpacity
-                  style={styles.btn}
-                  disabled={true}
-                >
-                  <Text style={styles.textMain}>Adcionar</Text>
-                </TouchableOpacity>
 
+                <LinearGradient
+                  colors={['#EB610C', '#FFA533']}
+                  style={styles.containerBtn}
+                >
+
+                  <TouchableOpacity
+                     disabled={true}
+                  >
+                    <Text style={styles.textMain}>Adcionar</Text>
+                  </TouchableOpacity>
+
+                </LinearGradient>
 
                 :
 
-                <View>
-                  <TouchableOpacity
-                    style={styles.btn}
-                    onPress={() => addProduct()}>
-                    <Text style={styles.textMain}>Cadastrar</Text>
-                  </TouchableOpacity>
-                </View>
+              <LinearGradient
+                colors={['#EB610C', '#FFA533']}
+                style={styles.containerBtn}
+              >
+
+                <TouchableOpacity                 
+                  onPress={() => addProduct()}>
+                  <Text style={styles.textMain}>Cadastrar</Text>
+                </TouchableOpacity>
+
+             </LinearGradient>
+
+
             }
 
 
@@ -313,14 +336,7 @@ export default function Insertproducts({ navigation }) {
 
 
 
-
-
-
-
-
-
-
-          </View>
+          </LinearGradient>
 
 
 

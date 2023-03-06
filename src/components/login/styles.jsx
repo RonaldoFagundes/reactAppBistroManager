@@ -23,57 +23,78 @@ export default StyleSheet.create(
 
        contentMain:{
         alignItems: 'center',
-        justifyContent: 'center',       
+        backgroundColor: 'rgba(251, 195, 95, 0.9)',
+        borderRadius:30,
+        justifyContent: 'center', 
+        padding:20      
        },
 
 
-       textMain:{
-         color:'yellow',
-         fontSize: 18
-        },
 
+
+
+      
 
         input: {
             width: 300,
             height: 50,
-            marginTop: 10,
+            marginTop: 10,            
             padding: 10,
             borderBottomWidth: 1,
-            borderBottomColor: "#F92E6A",
+            borderBottomColor: "#cc0000",
             marginLeft: 'auto',
             marginRight: 'auto',
-            color: "#bdbdbd"
+            color: "black"
           },
 
 
 
+
+
+
+          textMain:{
+            color: '#5D3806',
+            fontWeight: 'bold',
+            fontSize: 18
+           },
+   
+
+
+
+
        textInfo:{
-        marginTop: 20,
-        color: '#bdbdbd'
+        color: '#663300',
+          fontWeight: 'bold',
+         fontSize:12,
        },
 
 
 
        
-       linkSubscribe: {
-        color: '#1877f2',
-        fontSize: 16
+       textAlert: {
+        color: '#F00000',
+        fontSize: 14
       },
 
       
-      
 
-       btnLogin: {
-        width: 200,
-        height: 50,
-        backgroundColor: '#F92E6A',
-        justifyContent: 'center',
-        alignItems: 'center',
+
+
+
+
+      containerBtn:{
+        width: 140,
+        height: 40,      
+        justifyContent: 'center',     
         borderRadius: 50,
-        marginTop: 30
+        marginTop: 30,
+        marginBottom:30,   
+        textAlign:'center',
       },
 
-      
+
+
+
 
 
 
