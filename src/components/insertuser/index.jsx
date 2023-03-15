@@ -1,9 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 import {
-    Alert,
     View,
-    ScrollView,
     Text,
     TextInput,
     TouchableOpacity,
@@ -21,15 +19,11 @@ import styles from './styles';
 export default function Insertuser({ navigation }) {
 
 
-
     const { setUser } = useContext(AuthContext);
 
 
-
-
-
     const [datauser, setDatauser] = useState({
-        nome: '',
+        name: '',
         email: '',
         password: ''
     });
@@ -45,9 +39,6 @@ export default function Insertuser({ navigation }) {
 
 
 
-
-
-
     const handleInputChange = (atribute, value) => {
 
         setDatauser({
@@ -58,12 +49,10 @@ export default function Insertuser({ navigation }) {
 
 
 
-
     const validate = () => {
 
 
         if (datauser.email.includes('@') && datauser.email.includes('.com')) {
-
 
             setErrorValidate({
                 ...errorValidate, ['email']: false
@@ -72,28 +61,23 @@ export default function Insertuser({ navigation }) {
 
             console.log(' email ok ');
 
-
-
-
             if (datauser.password.length >= 8) {
-
 
                 setErrorValidate({
                     ...errorValidate, ['email']: false,
                     errorValidate, ['password']: false
                 });
 
-                console.log(
+                addUser();
 
-                    " nome  " + datauser.nome +
+                console.log(
+                    " name  " + datauser.name +
                     " email  " + datauser.email +
                     " password " + datauser.password +
                     " senha ok , cad finalizado chamar metodo de banco de dados aqui! "
                 );
 
-
             } else {
-
 
                 setErrorValidate({
                     ...errorValidate, ['password']: true,
@@ -103,22 +87,17 @@ export default function Insertuser({ navigation }) {
 
             }
 
-
-
         } else {
-
 
             setErrorValidate({
                 ...errorValidate, ['email']: true,
                 errorValidate, ['msg']: 'email invalido!'
             })
             console.log('erro no email ');
-
         }
 
-
         setDatauser({
-            ...datauser, ["nome"]: "",
+            ...datauser, ["name"]: "",
             datauser, ["email"]: "",
             datauser, ["password"]: ""
         })
@@ -128,11 +107,7 @@ export default function Insertuser({ navigation }) {
 
 
 
-
-
-
     const addUser = async () => {
-
 
         const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
 
@@ -152,27 +127,22 @@ export default function Insertuser({ navigation }) {
             .then(
                 (result) => {
 
-                    if (result === datauser.nome) {
+                    if (result === datauser.name) {
 
                         setUser(result);
 
                         navigation.navigate("Home");
 
-                        console.log(" nome " + datauser.nome + " email " + datauser.email + " senha " + datauser.password + " cadastrado com sucesso com ususario  " + result);
+                        console.log(" nome " + datauser.name + " email " + datauser.email + " senha " + datauser.password + " retorno da api:  " + result);
 
 
                     } else {
 
-                        console.log(" nome " + datauser.nome + " email " + datauser.email + " senha " + datauser.password + " error NÃO cadastrado  ");
+                        console.log(" nome " + datauser.name + " email " + datauser.email + " senha " + datauser.password + " retorno da api:  " + result);
                     }
 
-
                 });
-
     }
-
-
-
 
 
 
@@ -186,7 +156,6 @@ export default function Insertuser({ navigation }) {
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             style={styles.body}
         >
-
 
             <LinearGradient
 
@@ -203,13 +172,9 @@ export default function Insertuser({ navigation }) {
 
                 <View style={styles.contentMain}>
 
-
-
-
                     <View>
                         <Text style={styles.textMain}>Tela de Cadastro</Text>
                     </View>
-
 
 
                     <View>
@@ -220,14 +185,11 @@ export default function Insertuser({ navigation }) {
                             type="text"
 
                             onChangeText={
-                                (valor) => handleInputChange("nome", (valor))
+                                (valor) => handleInputChange("name", (valor))
                             }
-                            value={datauser.nome}
+                            value={datauser.name}
                         />
                     </View>
-
-
-
 
 
                     <View>
@@ -243,8 +205,6 @@ export default function Insertuser({ navigation }) {
                             value={datauser.email}
                         />
                     </View>
-
-
 
 
                     <View>
@@ -263,12 +223,6 @@ export default function Insertuser({ navigation }) {
                     </View>
 
 
-
-
-
-
-
-
                     {
                         errorValidate.email === true || errorValidate.password === true
                             ?
@@ -280,50 +234,43 @@ export default function Insertuser({ navigation }) {
                     }
 
 
-
-
-
                     {
-                        datauser.nome === "" || datauser.email === "" || datauser.password === ""
+                        datauser.name === "" || datauser.email === "" || datauser.password === ""
 
                             ?
 
                             <LinearGradient
-                              colors={[ '#EB610C', '#FFA533']}
-                              style={styles.containerBtn}
-                              >
+                                colors={['#EB610C', '#FFA533']}
+                                style={styles.containerBtn}
+                            >
 
-                              <TouchableOpacity
-                                style={styles.btnLogin}
-                                disabled={true}
-                              >
-                                <Text style={styles.textMain}>Cadastrar</Text>
-                              </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={styles.btnLogin}
+                                    disabled={true}
+                                >
+                                    <Text style={styles.textMain}>Cadastrar</Text>
+                                </TouchableOpacity>
 
                             </LinearGradient>
 
-
                             :
 
+                            <LinearGradient
+                                colors={['#D4580B', '#FA6326']}
+                                style={styles.containerBtn}
+                            >
 
-                          <LinearGradient
-                            colors={[ '#D4580B', '#FA6326']}
-                            style={styles.containerBtn}
-                          >
 
+                                <View>
+                                    <TouchableOpacity
+                                        style={styles.btnLogin}
+                                        onPress={validate}>
+                                        <Text style={styles.textMain}>Enviar</Text>
+                                    </TouchableOpacity>
+                                </View>
 
-                            <View>
-                                <TouchableOpacity
-                                    style={styles.btnLogin}
-                                    onPress={validate}>
-                                    <Text style={styles.textMain}>Enviar</Text>
-                                </TouchableOpacity>
-                            </View>
-
-                           </LinearGradient>
-
+                            </LinearGradient>
                     }
-
 
                     <Text style={styles.textInfo}>
 
@@ -337,26 +284,15 @@ export default function Insertuser({ navigation }) {
 
                     </Text>
 
-
                 </View>
 
 
-
-
-
-
                 <View style={{ height: 100 }}></View>
-
-
 
             </LinearGradient>
 
         </KeyboardAvoidingView>
 
-
     )
-
-
-
 
 }

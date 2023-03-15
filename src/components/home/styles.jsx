@@ -11,99 +11,167 @@ export default StyleSheet.create({
 
 
 
+  
 
    containerMain: {
-      height: 'auto',
-      with: '100%',
       alignItems: 'center',
       justifyContent: 'center',
-   },
-
-
-
-   textMain: {
-      color: '#5D3806',
-      fontWeight: 'bold',
-      fontSize: 22
-   },
-
-
-   textInfo: {
-      color: '#F4A716',
-      fontWeight: 'bold',
-      fontSize: 12,
-   },
-
-
-
-
-   textAlert: {
-      color: '#DAD27D',
-      fontSize: 14
-   },
-
-
-   containerHeader: {
-      height: 'auto',
-      width: 'auto',
-      flexDirection:'col',
-      textAlign: 'center',
-      padding:20,    
-      marginBottom: 10
-   },
-
-
-   contentHeader: {
-      flexDirection: 'row',
-      justifyContent: 'space-between ',
-      marginTop:20
+      height:'auto'  
     },
 
 
 
+    containerHeader: {
+      height: 180,
+      width: '100%',
+      flexDirection:'col',
+      textAlign: 'center',
+      padding:20, 
+      marginBottom: 30
+   },
+
+
+
+
+    contentHeader: {
+      flexDirection: 'row',
+      justifyContent: 'space-between ',
+      marginTop:40
+      
+    },
+
+
+    
+
+    textMain: {
+      color: '#5D3806',
+      fontWeight: 'bold',
+      fontSize: 24
+   },
+
+
+
+
+
+   textInfo: {
+     // color: '#452F0C',
+     color: '#4E1313',
+      fontWeight: 'bold',
+      fontSize: 16,
+   },
+
+
+
+
+ 
+     textAlert: {
+      color: '#F4A716',
+      fontWeight: 'bold',
+      fontSize: 14,
+   },
+
+
+
+   textDados: {
+      color: '#4E1313',
+      fontWeight: 'bold',
+      fontSize: 13,
+   },
+
+   
+
+
+
+
+   containerData: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 'auto',
+      borderRadius:20,
+      paddingTop:10,
+      paddingBottom: 3,  
+      marginTop:10 ,
+      
+   },
+
+
+  
+
 
    containerProducts: {
-      width: 800,
-      backgroundColor: 'green',
+      width: 'auto',
+     // backgroundColor: 'green',
       flexDirection: 'col',
       padding: 10,
-      marginTop: 30
+      marginBottom: 10 
+     // marginTop: 30
    },
+
+
+  
 
 
    contentProducts: {
       width: 'auto',
       backgroundColor: 'orange',
       flexDirection: 'row',
-      padding: 10
+      padding: 10,
+      borderRadius:20
    },
+
+
+
+
+   contentProductsImg:{
+      width:60,
+      height:50,
+      resizeMode:'contain',
+      backgroundColor: '#C45511',
+      borderRadius: 50/2 ,
+      marginLeft: 5,     
+      },
+
 
 
    contentProductsS: {
       width: 60,
-      backgroundColor: 'black',
+      height: 50,
+      backgroundColor: '#C45511',
       color: 'yellow',
       marginLeft: 5,
-      textAlign: 'center'
+      textAlign: 'center',
+      justifyContent:'center'
+       
    },
+
 
 
    contentProductsM: {
       width: 160,
-      backgroundColor: 'black',
+      height: 50,
+      backgroundColor: '#C45511',
       color: 'yellow',
       marginLeft: 5,
-      textAlign: 'center'
+      textAlign: 'center',
+      justifyContent:'center'
+     
    },
+
 
 
    contentProductsX: {
-      width: 240,
-      backgroundColor: 'black',
+      width: 220,
+      height: 50,
+      backgroundColor: '#C45511',
       color: 'yellow',
       marginLeft: 5,
-      textAlign: 'center'
+      textAlign: 'center',
+      justifyContent:'center'
+     
    },
+
+
+
 
 
    containerBtn: {
@@ -111,8 +179,8 @@ export default StyleSheet.create({
       height: 40,
       justifyContent: 'center',
       borderRadius: 10,
-      marginRight: 10,
-      marginLeft: 10,
+      marginRight: 6,
+      marginLeft: 6,
       textAlign: 'center',
    },
 

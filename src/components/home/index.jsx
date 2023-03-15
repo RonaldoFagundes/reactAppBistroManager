@@ -1,22 +1,20 @@
 
-
-
-import React, { useContext, useState, useEffect}  from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import {
-     Alert, 
-     View, 
-     ScrollView, 
-     Text,
-     TextInput, 
-     TouchableOpacity,
-     KeyboardAvoidingView,
-     Platform 
-     } from 'react-native';
+  Alert,
+  View,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+  Image
+} from 'react-native';
 
 
 import { AuthContext } from '../../contexts/auth';
-     
+
 import styles from './styles';
 
 import { LinearGradient } from 'expo-linear-gradient';
@@ -25,103 +23,82 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 
 
-export default function Home({ navigation }){
+export default function Home({ navigation }) {
 
 
 
 
   const [products, setProducts] = useState([]);
 
-  const {user , setIdProduct } = useContext(AuthContext);
+  const { user, setIdProduct } = useContext(AuthContext);
 
-
- // const [id,setId] = useState("");
-
-
-
-
-
-   
+  const [load, setLoad] = useState(true)
 
 
 
 
 
-  useEffect(()=>{ 
+  useEffect(() => {
 
-     getProducts();
-
-
-
-// const endpointNode =  'http://192.168.236.217:3000/tb_usuarios';
-   
-// const endpointPhp  =  'https://phpdatabaseapi.ronaldofagundes.repl.co/';
-   
-// const endpointPhp  =  'http://127.0.0.1:4000/_github/php_api_bistro_data/listProducts.php';
-
-// const endpointPhp  =  'http://192.168.21.204:4000/_github/php_api_bistro_data/listProducts.php';
-
-// const endpointPhp  =  'http://127.0.0.1:4000/_github/php_api_bistro_data/listProducts.php';
+    getProducts();
 
 
 
+    // const endpointNode =  'http://192.168.236.217:3000/tb_usuarios';
 
-/*
-const endpointPhp  = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
+    // const endpointPhp  =  'https://phpdatabaseapi.ronaldofagundes.repl.co/';
 
-fetch(`${endpointPhp}/?action=listprodutos`)
+    // const endpointPhp  =  'http://127.0.0.1:4000/_github/php_api_bistro_data/listProducts.php';
+
+    // const endpointPhp  =  'http://192.168.21.204:4000/_github/php_api_bistro_data/listProducts.php';
+
+    // const endpointPhp  =  'http://127.0.0.1:4000/_github/php_api_bistro_data/listProducts.php';
+
+
+
+
+    /*
+    const endpointPhp  = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
+    
+    fetch(`${endpointPhp}/?action=listprodutos`)
+          .then(res => res.json())
+          .then(
+               (result)=>{
+                   setProducts(result)
+               }
+          ) 
+         
+         .catch(() => {
+          Alert.alert('Erro', 'Não foi possível carregar os dados do Produto');
+         });
+     */
+
+    navigation.addListener('focus', () => setLoad(!load))
+
+  }, [load, navigation]);
+
+
+
+
+
+
+  const getProducts = async () => {
+
+    const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
+
+    await fetch(`${endpointPhp}/?action=listprodutos`)
       .then(res => res.json())
       .then(
-           (result)=>{
-               setProducts(result)
-           }
-      ) 
-     
-     .catch(() => {
-      Alert.alert('Erro', 'Não foi possível carregar os dados do Produto');
-     });
- */  
-
-  },[]);  
-
-  
+        (result) => {
+          setProducts(result)
+        }
+      )
+      .catch(() => {
+        Alert.alert('Erro', 'Não foi possível carregar os dados do Produto');
+      });
 
 
-
-
-  const getProducts = async()=>{
-		
-	  const endpointPhp  = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
-		
-		 await fetch(`${endpointPhp}/?action=listprodutos`)
-           .then(res => res.json())
-           .then(
-               (result)=>{
-                  setProducts(result)
-               }
-           )      
-          .catch(() => {
-            Alert.alert('Erro', 'Não foi possível carregar os dados do Produto');
-          });
-		
-		
-	}
-
-
-     
-
-
-
-  
-
-    const updateProduct =(value)=>{       
-   
-     //setId("");
-     setIdProduct(value);
-
-     navigation.navigate("Updateproducts");     
-     console.log(value)
-    }
+  }
 
 
 
@@ -130,267 +107,277 @@ fetch(`${endpointPhp}/?action=listprodutos`)
 
 
 
-    const deleteProduct =(value)=>{       
-    
-      // setId("");
-       setIdProduct(value);
-  
-       navigation.navigate("Deleteproducts");       
-       console.log(value)  
-      }
+  const updateProduct = (id, img) => {
+
+    setIdProduct(id);
+
+    navigation.navigate("Updateproducts", { productImg: img });
+    console.log(id + " " + img)
+  }
 
 
 
 
-  
-  return(     
+
+
+
+
+  const deleteProduct = (id, img) => {
+
+    setIdProduct(id);
+
+    navigation.navigate("Deleteproducts", { productImg: img });
+
+    console.log(id + "  " + img)
+  }
+
+
+
+
+
+  return (
 
     <KeyboardAvoidingView
-       behavior={Platform.OS === "ios" ? "padding" : "height"}  
-       style={styles.body}   
-     >
-
-
-    <LinearGradient
-       
-       colors={
-           [
-            'rgba(251, 195, 95, 1.0)',
-            'rgba(251, 195, 95, 0.5)'
-           ]
-       }     
-      >
-
-
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.body}
+    >
 
       <ScrollView>
-        
 
-      <LinearGradient
-       
-          colors={
-             [
-              'rgba(250, 65, 35, 1.0)',
-              'rgba(250, 85, 38, 0.5)'
-             ]
-         }  
-       
-       style={styles.containerHeader}
-      >
-     
-                     
-          <Text style={styles.textMain}>Tela Home</Text>
+       <LinearGradient
+          colors={['#66110A', '#FFB233']}
+          style={styles.containerMain}
+        >
 
+         <LinearGradient
 
-         <View style={styles.contentHeader}>
+            colors={
+              [
+                'rgba(250, 165, 35, 1.0)',
+                'rgba(250, 185, 38, 0.5)'
+              ]
+            }
+
+            style={styles.containerHeader}
+          >
 
 
-           <Text style={styles.textAlert}>{`Bem vindo(a)! ${user}`}</Text>
+           <Text style={styles.textMain}>Tela Home</Text>
 
 
-            <LinearGradient
-               colors={[ '#66110A', '#F42E16']}
-               style={styles.containerBtn}
-             >
+            <View style={styles.contentHeader}>
 
-             <TouchableOpacity                
-                onPress={() =>
-                navigation.navigate("Login")  }
-               >
-               <Text style={styles.textInfo} >Logout</Text>
-             </TouchableOpacity>
+              <Text style={styles.textInfo}>{`Bem vindo(a)! ${user}`}</Text>
 
-            </LinearGradient>  
-          
+              <LinearGradient
+                colors={['#66110A', '#F42E16']}
+                style={styles.containerBtn}
+              >
 
-          </View>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("Login")}
+                >
+                  <Text style={styles.textAlert} >Logout</Text>
+                </TouchableOpacity>
 
+              </LinearGradient>
 
+            </View>
 
-
-       </LinearGradient>
+          </LinearGradient>
 
 
 
+          <LinearGradient
+            colors={['#66110A', '#F42E16']}
+            style={styles.containerBtn}
+          >
 
-
-
-
-
-
-         <View  style={styles.containerMain}>
-
-
-           <LinearGradient
-               colors={[  '#66110A', '#F42E16']}
-               style={styles.containerBtn}        
-             >
-
-             <TouchableOpacity
-                 onPress={() =>
-                 navigation.navigate("Insertproducts")  }
-               >
-               <Text style={styles.textInfo}>Adcionar</Text>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Insertproducts")}
+            >
+              <Text style={styles.textAlert}>Adcionar</Text>
             </TouchableOpacity>
 
-            </LinearGradient>
+          </LinearGradient>
 
 
+          <LinearGradient
+            colors={['#FFB233', '#66110A']}
+            style={styles.containerData}
+          >
+
+            <View style={styles.containerProducts}>
+
+             <View style={styles.contentProducts}>
 
 
-
-           
-
-
-
-
-
-           <View style={styles.containerProducts}>                 
-
-
-             <View  style={styles.contentProducts}> 
-
-              <Text style={styles.contentProductsS}>id</Text> 
-              <Text style={styles.contentProductsM}>nome</Text> 
-              <Text style={styles.contentProductsM}>info</Text>
-              <Text style={styles.contentProductsS}>preco</Text>
-              <Text style={styles.contentProductsM}>Açoes</Text>
-
-             </View> 
-
-
-              {            
-              
-              products.map(
-
-                (produto) => 
-
-                <View  style={styles.contentProducts} key={produto.id}>
-                                   
-                  <Text style={styles.contentProductsS}>{produto.id}</Text> 
-                  <Text style={styles.contentProductsM}>{produto.nome}</Text> 
-                  <Text style={styles.contentProductsM}>{produto.info}</Text>
-                  <Text style={styles.contentProductsS}>{`R$ ${produto.preco},00`}</Text>
-
-
-      
-                  <LinearGradient
-                    colors={[  '#66110A', '#F42E16']}
-                    style={styles.containerBtn} 
-                    >
-
-                    <TouchableOpacity                                  
-                      onPress={() => updateProduct(produto.id)}>
-                      <Text style={styles.textInfo}>Update</Text>
-                   </TouchableOpacity>
-                 
-
-                  </LinearGradient>
-
-
-                  <LinearGradient
-                    colors={[  '#66110A', '#F42E16']}
-                    style={styles.containerBtn} 
-                    >
-
-                  
-                    <TouchableOpacity
-                                        
-                      onPress={() => deleteProduct(produto.id)}>
-                      <Text style={styles.textInfo} >Delete</Text>
-                    </TouchableOpacity>
-                  
-                  </LinearGradient>
-
-
-
+                <View style={styles.contentProductsS}>
+                  <Text style={styles.textDados}>id</Text>
                 </View>
 
-                  
 
-              )     
-            
-            }
-            
-            
-
-          </View>        
+                <View style={styles.contentProductsS}>
+                  <Text style={styles.textDados}>img</Text>
+                </View>
 
 
-
-         </View>
-
-
-          {/* 
-          
-          <View>
+                <View style={styles.contentProductsM}>
+                  <Text style={styles.textDados}>nome</Text>
+                </View>
 
 
-          <TextInput
-           style={styles.input}
-       
-          placeholder=" valor do id" placeholderTextColor="black"
-          type="text"
-          onChangeText={(valor) => setId(valor)}  
-          value={id}       
-         />
+                <View style={styles.contentProductsX}>
+                  <Text style={styles.textDados}>informações</Text>
+                </View>
 
 
-            <TouchableOpacity
-               style={styles.btn}
-               onPress={updateProduct}
-             >
-              <Text>Atualizar</Text>
-            </TouchableOpacity>
+                <View style={styles.contentProductsM}>
+                  <Text style={styles.textDados}>preço</Text>
+                </View>
+
+
+                <View style={styles.contentProductsS}>
+                  <Text style={styles.textDados}>Estoque</Text>
+                </View>
+
+
+                <View style={styles.contentProductsS}>
+                  <Text style={styles.textDados}>Produção</Text>
+                </View>
+
+
+                <View style={styles.contentProductsX}>
+                  <Text style={styles.textDados}>Ações</Text>
+                </View>
+
+
+              </View>
+
+
+              {
+
+                products.map(
+
+                  (produto) =>
+
+                    <View style={styles.contentProducts} key={produto.id}>
 
 
 
-            <TouchableOpacity
-               style={styles.btn}
-               onPress={deleteProduct}
-             >
-              <Text >Excluir</Text>
-            </TouchableOpacity>
+                      <View style={styles.contentProductsS}>
+                        <Text style={styles.textDados}>{produto.id}</Text>
+                      </View>
+
+
+                      <View>
+                        <Image
+                          source={require(`../../../assets/${produto.img}.png`)}
+                          style={styles.contentProductsImg}
+                        />
+                      </View>
+
+
+
+                      <View style={styles.contentProductsM}>
+                        <Text style={styles.textDados}>{produto.nome}</Text>
+                      </View>
+
+
+                      <View style={styles.contentProductsX}>
+                        <Text style={styles.textDados} >{produto.info}</Text>
+                      </View>
+
+
+                      <View style={styles.contentProductsM}>
+                        <Text style={styles.textDados}>{`R$ ${produto.preco},00`}</Text>
+                      </View>
+
+
+                      <View style={styles.contentProductsS}>
+                        <Text style={styles.textDados} >{produto.estoque}</Text>
+                      </View>
 
 
 
 
-          </View> 
-          
-          */}
+                      <View style={styles.contentProductsS}>
+                        <Text style={styles.textDados} >{produto.producao}</Text>
+                      </View>
 
 
-     
 
+
+                      <LinearGradient
+                        colors={['#66110A', '#F42E16']}
+                        style={styles.containerBtn}
+                      >
+
+                        <TouchableOpacity
+                          onPress={() => updateProduct(produto.id, produto.img)}>
+                          <Text style={styles.textAlert}>Update</Text>
+                        </TouchableOpacity>
+
+
+                      </LinearGradient>
+
+
+
+                      <LinearGradient
+                        colors={['#66110A', '#F42E16']}
+                        style={styles.containerBtn}
+                      >
+
+
+                        <TouchableOpacity
+
+                          onPress={() => deleteProduct(produto.id, produto.img)}>
+                          <Text style={styles.textAlert} >Delete</Text>
+                        </TouchableOpacity>
+
+                      </LinearGradient>
+
+
+                    </View>
+
+                )
+
+              }
+
+
+
+            </View>
+
+
+
+          </LinearGradient>
+
+
+        </LinearGradient>
 
 
       </ScrollView>
 
 
 
-   
+      <View style={{ height: 100 }}></View>
 
 
-
-    <View style={{ height: 100 }}></View>
-
-   
-
-     </LinearGradient>
-
-  </KeyboardAvoidingView>
+    </KeyboardAvoidingView>
 
 
-    );
- }
+  );
+}
 
 
 
 
 
- 
 
-  
+
+
 
 
 

@@ -20,12 +20,9 @@ function AuthProvider({children}){
 
      return(
         <AuthContext.Provider value={ {
-
                 setUser , user ,
-
                 setIdProduct , idProduct
-
-                } }>
+              } }>
                     
            {children}
         </AuthContext.Provider>

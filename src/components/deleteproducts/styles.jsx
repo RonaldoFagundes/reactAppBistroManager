@@ -15,29 +15,42 @@ export default StyleSheet.create({
 
 
    containerMain: {
-      height: 'auto',
-      with: '100%'
+      alignItems: 'center',
+      justifyContent: 'center',
+      height:'auto'      
    },
-
 
 
 
 
    containerHeader: {
-      height: 'auto',
-      width: 'auto',
+      height: 180,
+      width: '100%',
       flexDirection:'col',
       textAlign: 'center',
-      padding:20,    
-      marginBottom: 10
+      padding:20, 
+      marginBottom: 30
    },
+
+
 
 
    contentHeader: {
       flexDirection: 'row',
       justifyContent: 'space-between ',
-      marginTop:20
+      marginTop:40
+      
     },
+
+
+
+   
+
+
+
+
+
+  
 
 
 
@@ -47,7 +60,7 @@ export default StyleSheet.create({
    textMain: {
       color: '#5D3806',
       fontWeight: 'bold',
-      fontSize: 22
+      fontSize: 24
    },
 
 
@@ -55,6 +68,15 @@ export default StyleSheet.create({
 
 
    textInfo: {
+      color: '#452F0C',
+      fontWeight: 'bold',
+      fontSize: 14,
+   },
+
+
+
+
+   textAlert: {
       color: '#F4A716',
       fontWeight: 'bold',
       fontSize: 12,
@@ -63,42 +85,47 @@ export default StyleSheet.create({
 
 
 
-
-   textAlert: {
-      color: '#DAD27D',
-      fontSize: 14
-   },
-
+   
 
 
 
    containerData: {
       alignItems: 'center',
       justifyContent: 'center',
-      width: 'auto',
-      height: 'auto',
-      paddingBottom: 20,
-      backgroundColor: 'green',
+      width: '80%',
+      borderRadius:20,
+      paddingBottom: 20,  
+      marginBottom:60   
    },
 
 
 
 
+   contentDataImg:{
+      width:140,
+      height:140,
+      resizeMode:'contain',
+      borderRadius: 50/2 ,
+     },
+
+     
 
    contentData: {
-      width: 300,
-      height: 50,
+      width: '90%',
       marginTop: 10,
       padding: 10,
       borderBottomWidth: 1,
-      borderBottomColor: "#F92E6A",
+      borderBottomColor: "#45130C",
       marginLeft: 'auto',
       marginRight: 'auto',
-      color: "#bdbdbd",
+      //color: "#bdbdbd",
+      color: "#F1E767",
+      fontWeight: 'bold',
       fontSize: 18
    },
 
 
+   
 
 
    containerBtn: {

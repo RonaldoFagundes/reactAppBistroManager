@@ -1,15 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
 
+
+
 import {
   Alert,
   View,
-  ScrollView,
   Text,
-  TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  Image
 } from 'react-native';
+
+
+
 
 
 import { AuthContext } from '../../contexts/auth';
@@ -22,22 +26,19 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 
 
-export default function Deleteproducts({ navigation }) {
+export default function Deleteproducts({ route, navigation }) {
+
+
 
 
 
   const { user, idProduct } = useContext(AuthContext);
 
+
   const [products, setProducts] = useState([]);
 
 
-
-
-
-
-
-
-
+  const { productImg } = route.params;
 
 
 
@@ -47,7 +48,9 @@ export default function Deleteproducts({ navigation }) {
   useEffect(() => {
 
 
+
     getProducts();
+
 
 
     /*
@@ -65,8 +68,6 @@ export default function Deleteproducts({ navigation }) {
          });
         */
 
-
-
   }, []);
 
 
@@ -76,7 +77,7 @@ export default function Deleteproducts({ navigation }) {
 
 
 
-  const getProducts = async () => {
+  const getProducts = async (idProd) => {
 
     const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
 
@@ -121,7 +122,7 @@ export default function Deleteproducts({ navigation }) {
       },
 
       body: JSON.stringify({
-        idProduct
+         idProduct
       })
 
     })
@@ -129,7 +130,18 @@ export default function Deleteproducts({ navigation }) {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result);
+
+
+           if(result==="produto deletado com sucesso!!!"){
+            navigation.navigate("Home");
+            console.log(result);
+           }else{
+            console.log(result);
+           }
+          
+
+
+
         }
       )
   }
@@ -146,130 +158,127 @@ export default function Deleteproducts({ navigation }) {
 
   return (
 
-
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.body}
-
     >
 
 
 
-      <LinearGradient
 
+
+     <LinearGradient
+          colors={
+            [
+              'rgba(221, 175, 95, 1.0)',
+              'rgba(251, 195, 95, 0.5)'
+            ]
+          }
+          style={styles.containerMain}
+        >
+
+
+
+
+
+    <LinearGradient
         colors={
           [
-            'rgba(251, 195, 95, 1.0)',
-            'rgba(251, 195, 95, 0.5)'
+            'rgba(250, 165, 35, 1.0)',
+            'rgba(250, 185, 38, 0.5)'
           ]
         }
-        style={styles.containerMain}
+        style={styles.containerHeader}
       >
 
 
-
-        <ScrollView>
-
+        <Text style={styles.textMain}>Tela Delete</Text>
 
 
-          <LinearGradient
+        <View style={styles.contentHeader}>
 
-            colors={
-              [
-                'rgba(250, 65, 35, 1.0)',
-                'rgba(250, 85, 38, 0.5)'
-              ]
-            }
-              style={styles.containerHeader}
-            >
-          
+          <Text style={styles.textInfo}>{`User :  ${user}`}</Text>
 
-            <Text style={styles.textMain}>Tela Delete</Text>
-
-
-          <View style={styles.contentHeader}>
-
-           <Text style={styles.textInfo}>{`User :  ${user}`}</Text>
-
-
-            <LinearGradient
-              colors={['#66110A', '#F42E16']}
-              style={styles.containerBtn}
-            >
-
+           <LinearGradient
+            colors={['#66110A', '#F42E16']}
+            style={styles.containerBtn}
+           >
 
             <TouchableOpacity
               onPress={() => navigation.navigate("Home")}>
-              <Text style={styles.textMain}>Voltar</Text>
+              <Text style={styles.textAlert}>Voltar</Text>
             </TouchableOpacity>
 
+           </LinearGradient>
 
-            </LinearGradient>
+         </View>
 
+     </LinearGradient>
+
+
+
+       
+
+
+
+
+
+
+        <LinearGradient
+          colors={['#66110A', '#FFB233']}
+          style={styles.containerData}
+        >
+
+          <View>
+            <Image
+              /*
+              source={require(`../../../assets/${route.params.paramKey}.png` ) } 
+              source={require("../../../assets/"+products.img+".png" ) } 
+
+              source={require(`../../../assets/${route.params.paramTwo}.png` ) } 
+              productImg
+              */
+
+              source={require(`../../../assets/${productImg}.png`)}
+              style={styles.contentDataImg}
+            />
           </View>
 
 
-          </LinearGradient>
+          <Text style={styles.contentData}>{` Nome   :  ${products.nome}`}</Text>
 
+          <Text style={styles.contentData}>{` Info   :  ${products.info}`}</Text>
 
-
+          <Text style={styles.contentData}>{` Preço  :  ${products.preco}`}</Text>
 
 
 
           <LinearGradient
             colors={['#66110A', '#F42E16']}
-            style={styles.containerData}
+            style={styles.containerBtn}
           >
-     
-            <Text >{` Id :  ${products.id}`}</Text>
 
-            <Text style={styles.contentData}>{` Img :     ${products.img}`}</Text>
+            <TouchableOpacity
+              onPress={() => deleteProduct()}>
+              <Text style={styles.textAlert} >Deletar</Text>
 
-            <Text style={styles.contentData}>{` Nome :    ${products.nome}`}</Text>
-
-            <Text style={styles.contentData}>{` Info  :   ${products.info}`}</Text>
-
-            <Text style={styles.contentData}>{` Preço :   ${products.preco}`}</Text>
-
-
-
-
-
-            <LinearGradient
-                  colors={['#EB610C', '#FFA533']}
-                  style={styles.containerBtn}
-                >
-
-              <TouchableOpacity               
-                onPress={() => deleteProduct()}>
-                <Text style={styles.textMain} >Deletar</Text>
-
-              </TouchableOpacity>
-
-           </LinearGradient>
-
-
+            </TouchableOpacity>
 
           </LinearGradient>
 
 
 
-        </ScrollView>
-
-
-
-
-
-
-
-        <View style={{ height: 100 }}></View>
-
+        </LinearGradient>
 
 
       </LinearGradient>
 
-    </KeyboardAvoidingView>
 
+     {/*    <View style={{ height: 10 }}></View> */}
+
+     
+
+    </KeyboardAvoidingView>
 
   );
 }

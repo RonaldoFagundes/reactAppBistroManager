@@ -13,26 +13,26 @@ export default StyleSheet.create(
 
 
     containerMain: {
-      height: 'auto',
-      with: '100%'
+      alignItems: 'center',
+      justifyContent: 'center',
+      height:'auto'  
     },
 
 
-
-    containerHeader: {
-      height: 'auto',
-      width: 'auto',
+   containerHeader: {
+      height: 180,
+      width: '100%',
       flexDirection:'col',
       textAlign: 'center',
-      padding:20,    
-      marginBottom: 10
+      padding:20, 
+      marginBottom: 30
    },
 
 
    contentHeader: {
       flexDirection: 'row',
       justifyContent: 'space-between ',
-      marginTop:20
+      marginTop:40
     },
 
 
@@ -44,52 +44,54 @@ export default StyleSheet.create(
     textMain: {
       color: '#5D3806',
       fontWeight: 'bold',
-      fontSize: 22
-    },
+      fontSize: 24
+   },
 
 
 
 
 
-    textInfo: {
+   textInfo: {
+      color: '#452F0C',
+      fontWeight: 'bold',
+      fontSize: 14,
+   },
+
+
+
+
+ 
+     textAlert: {
       color: '#F4A716',
       fontWeight: 'bold',
       fontSize: 12,
-    },
+   },
+
+
+
+
+
+    
 
 
 
 
 
 
-
-
-
-    textAlert: {
-      color: '#DAD27D',
-      fontSize: 14
-    },
-
-
-
-
-
-
-
-    containerForm: {
+    containerForm: {      
       alignItems: 'center',
       justifyContent: 'center',
-      width: 'auto',
-      height: 'auto',
-      paddingBottom: 20,
-      backgroundColor: 'green',
+      width: '80%',
+      borderRadius:20,
+      paddingBottom: 20,  
+      marginBottom:60 
     },
 
 
 
 
     input: {
-      width: 300,
+      width: '90%',
       height: 50,
       marginTop: 10,
       padding: 10,
