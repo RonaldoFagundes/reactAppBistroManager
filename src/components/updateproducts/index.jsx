@@ -16,7 +16,7 @@ import {
 
 
 
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext,  endpointPhp } from '../../contexts/auth';
 
 import styles from './styles';
 
@@ -27,7 +27,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function Updateproducts({ route, navigation }) {
 
 
-  const { user, idProduct } = useContext(AuthContext);
+  const { user, idProduct ,endpointPhp} = useContext(AuthContext);
 
 
   const [products, setProducts] = useState([]);
@@ -60,9 +60,7 @@ export default function Updateproducts({ route, navigation }) {
 
 
   const updateProduct = async () => {
-
-    const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
-
+  
     await fetch(`${endpointPhp}/?action=updateproduto`, {
       method: 'POST',
       headers: {
@@ -99,31 +97,11 @@ export default function Updateproducts({ route, navigation }) {
 
     getProducts();
 
-
-    /*
-    const endpointPhp  = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
-
-    fetch(`${endpointPhp}/?action=getproduto&id=${idProduct}`)
-          .then(res => res.json())
-          .then(
-               (result)=>{
-                   setProducts(result)
-               }
-          )    
-         .catch(() => {
-          Alert.alert('Erro', 'Não foi possível carregar os dados do Produto');
-         });
-   */
-
-
-
   }, []);
 
 
 
-  const getProducts = async () => {
-
-    const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
+  const getProducts = async () => {  
 
     await fetch(`${endpointPhp}/?action=getproduto`, {
       method: 'POST',

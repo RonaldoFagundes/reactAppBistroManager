@@ -30,7 +30,7 @@ export default function Home({ navigation }) {
 
   const [products, setProducts] = useState([]);
 
-  const { user, setIdProduct } = useContext(AuthContext);
+  const { user, setIdProduct, endpointPhp } = useContext(AuthContext);
 
   const [load, setLoad] = useState(true)
 
@@ -40,38 +40,7 @@ export default function Home({ navigation }) {
 
   useEffect(() => {
 
-    getProducts();
-
-
-
-    // const endpointNode =  'http://192.168.236.217:3000/tb_usuarios';
-
-    // const endpointPhp  =  'https://phpdatabaseapi.ronaldofagundes.repl.co/';
-
-    // const endpointPhp  =  'http://127.0.0.1:4000/_github/php_api_bistro_data/listProducts.php';
-
-    // const endpointPhp  =  'http://192.168.21.204:4000/_github/php_api_bistro_data/listProducts.php';
-
-    // const endpointPhp  =  'http://127.0.0.1:4000/_github/php_api_bistro_data/listProducts.php';
-
-
-
-
-    /*
-    const endpointPhp  = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
-    
-    fetch(`${endpointPhp}/?action=listprodutos`)
-          .then(res => res.json())
-          .then(
-               (result)=>{
-                   setProducts(result)
-               }
-          ) 
-         
-         .catch(() => {
-          Alert.alert('Erro', 'Não foi possível carregar os dados do Produto');
-         });
-     */
+    getProducts();       
 
     navigation.addListener('focus', () => setLoad(!load))
 
@@ -83,9 +52,7 @@ export default function Home({ navigation }) {
 
 
   const getProducts = async () => {
-
-    const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
-
+    
     await fetch(`${endpointPhp}/?action=listprodutos`)
       .then(res => res.json())
       .then(

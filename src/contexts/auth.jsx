@@ -17,11 +17,22 @@ function AuthProvider({children}){
 
 
 
+   /* 
+    localhost 
+    const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data'; 
+   */
+
+   /* replit */
+   const endpointPhp = 'https://phpapibistrodata.ronaldofagundes.repl.co'; 
+
+   
+   
 
      return(
         <AuthContext.Provider value={ {
                 setUser , user ,
-                setIdProduct , idProduct
+                setIdProduct , idProduct,
+                endpointPhp
               } }>
                     
            {children}

@@ -3,7 +3,6 @@ import React, { useContext, useState, useEffect } from 'react';
 
 
 import {
-  Alert,
   View,
   Text,
   TouchableOpacity,
@@ -32,7 +31,7 @@ export default function Deleteproducts({ route, navigation }) {
 
 
 
-  const { user, idProduct } = useContext(AuthContext);
+  const { user, idProduct, endpointPhp } = useContext(AuthContext);
 
 
   const [products, setProducts] = useState([]);
@@ -47,26 +46,7 @@ export default function Deleteproducts({ route, navigation }) {
 
   useEffect(() => {
 
-
-
-    getProducts();
-
-
-
-    /*
-    const endpointPhp  = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
-
-    fetch(`${endpointPhp}/?action=getproduto&id=${idProduct}`)
-          .then(res => res.json())
-          .then(
-               (result)=>{
-                   setProducts(result)
-               }
-          )   
-         .catch(() => {
-          Alert.alert('Erro', 'Não foi possível carregar os dados do Produto');
-         });
-        */
+    getProducts();    
 
   }, []);
 
@@ -77,9 +57,7 @@ export default function Deleteproducts({ route, navigation }) {
 
 
 
-  const getProducts = async (idProd) => {
-
-    const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
+  const getProducts = async (idProd) => {  
 
     await fetch(`${endpointPhp}/?action=getproduto`, {
       method: 'POST',
@@ -111,9 +89,7 @@ export default function Deleteproducts({ route, navigation }) {
 
 
 
-  const deleteProduct = async () => {
-
-    const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
+  const deleteProduct = async () => { 
 
     await fetch(`${endpointPhp}/?action=deleteproduto`, {
       method: 'POST',

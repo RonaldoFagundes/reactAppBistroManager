@@ -20,7 +20,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function Insertproducts({ navigation }) {
 
 
-  const { user } = useContext(AuthContext);
+  const { user, endpointPhp } = useContext(AuthContext);
 
 
   const [produto, setProduto] = useState({
@@ -46,8 +46,6 @@ export default function Insertproducts({ navigation }) {
 
 
   const addProduct = async () => {
-
-    const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
 
     await fetch(`${endpointPhp}/?action=addproduto`, {
       method: 'POST',

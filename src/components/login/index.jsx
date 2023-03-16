@@ -26,7 +26,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function Login({ navigation }) {
 
 
-  const { setUser } = useContext(AuthContext);
+  const { setUser ,  endpointPhp} = useContext(AuthContext);
 
 
   const [errorLogin, setErrorLogin] = useState({
@@ -53,9 +53,7 @@ export default function Login({ navigation }) {
 
 
 
-  const logar = async () => {
-
-    const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
+  const logar = async () => {  
 
     await fetch(`${endpointPhp}/?action=login`, {
       method: 'POST',

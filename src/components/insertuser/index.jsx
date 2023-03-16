@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState} from 'react';
 
 import {
     View,
@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext, endpointPhp } from '../../contexts/auth';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './styles';
 
@@ -19,7 +19,7 @@ import styles from './styles';
 export default function Insertuser({ navigation }) {
 
 
-    const { setUser } = useContext(AuthContext);
+    const { setUser, endpointPhp } = useContext(AuthContext);
 
 
     const [datauser, setDatauser] = useState({
@@ -107,9 +107,7 @@ export default function Insertuser({ navigation }) {
 
 
 
-    const addUser = async () => {
-
-        const endpointPhp = 'http://127.0.0.1:4000/_github/php_api_bistro_data';
+    const addUser = async () => {      
 
         await fetch(`${endpointPhp}/?action=adduser`, {
             method: 'POST',
